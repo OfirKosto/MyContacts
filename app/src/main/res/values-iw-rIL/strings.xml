@@ -5,7 +5,9 @@
     <string name="no">לא</string>
     <string name="welcome">ברוך הבא</string>
     <string name="username">שם משתמש</string>
-    <string name="password">סיסמא</string>
+    <string name="password">סיסמה</string>
     <string name="login">התחבר</string>
     <string name="signup">הרשם</string>
+    <string name="back">חזור</string>
+    <string name="confirm_password">אשר סיסמה</string>
 </resources>
