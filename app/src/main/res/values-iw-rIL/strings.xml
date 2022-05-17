@@ -10,4 +10,11 @@
     <string name="signup">הרשם</string>
     <string name="back">חזור</string>
     <string name="confirm_password">אשר סיסמה</string>
+    <string name="first_name">שם פרטי</string>
+    <string name="last_name">שם משפחה</string>
+    <string name="email">דוא\"ל</string>
+    <string name="gender">מין</string>
+    <string name="phone">טלפון</string>
+    <string name="cancel">ביטול</string>
+    <string name="save">שמור</string>
 </resources>

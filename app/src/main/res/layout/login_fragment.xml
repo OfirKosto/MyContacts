@@ -37,7 +37,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fragment_sign_in_email_et"
+                android:id="@+id/fragment_login_username_et"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:id="@+id/fragment_sign_in_password_et"/>
+                android:id="@+id/fragment_login_password_et"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -66,7 +66,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/login"
             android:textAllCaps="false"
-            android:id="@+id/fragment_sign_in_sign_in_btn"/>
+            android:id="@+id/fragment_login_login_btn"/>
 
         <Space
             android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
             android:textAllCaps="false"
             android:layout_gravity="center_horizontal"
             android:text="@string/signup"
-            android:id="@+id/fragment_sign_in_back_btn"/>
+            android:id="@+id/fragment_login_signup_btn"/>
 
     </LinearLayout>
 

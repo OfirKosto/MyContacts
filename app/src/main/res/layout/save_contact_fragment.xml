@@ -1,13 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.SaveContactFragment">
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:hint="@string/first_name"
+                app:boxBackgroundColor="?attr/colorSecondaryVariant"
+                app:boxStrokeColor="?attr/colorSecondary"
+                app:hintTextColor="?attr/colorSecondary"
+                app:startIconDrawable="@drawable/outline_person_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_save_contact_first_name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnPrimary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:hint="@string/last_name"
+                app:boxBackgroundColor="?attr/colorSecondaryVariant"
+                app:boxStrokeColor="?attr/colorSecondary"
+                app:hintTextColor="?attr/colorSecondary"
+                app:startIconDrawable="@drawable/outline_person_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_save_contact_last_name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnPrimary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/phone"
+            app:boxBackgroundColor="?attr/colorSecondaryVariant"
+            app:boxStrokeColor="?attr/colorSecondary"
+            app:hintTextColor="?attr/colorSecondary"
+            app:startIconDrawable="@drawable/ic_outline_phone_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_save_contact_phone_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnPrimary"
+                android:inputType="phone"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/email"
+            android:textColor="?attr/colorOnSecondary"
+            app:boxBackgroundColor="?attr/colorSecondaryVariant"
+            app:boxStrokeColor="?attr/colorSecondary"
+            app:hintTextColor="?attr/colorSecondary"
+            app:startIconDrawable="@drawable/outline_email_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_save_contact_email_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="?attr/colorOnPrimary"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:id="@+id/fragment_create_new_item_category_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSecondaryVariant"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_outline_people_alt_24"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:tint="@color/gray"
+                android:id="@+id/fragment_save_contact_gender_icon"/>
+
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragment_save_contact_gender_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/fragment_save_contact_gender_icon"
+                android:textColor="@color/gray"
+                android:layout_margin="15dp"
+                android:text="@string/gender"/>
+
+            <Spinner
+                android:id="@+id/fragment_save_contact_gender_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fragment_save_contact_save_btn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:layout_margin="10dp"
+                android:layout_weight="1"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fragment_save_contact_cancel_btn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:layout_margin="10dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
