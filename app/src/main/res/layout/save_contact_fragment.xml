@@ -113,7 +113,7 @@
 
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/fragment_save_contact_gender_et"
+                android:id="@+id/fragment_save_contact_gender_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/fragment_save_contact_gender_icon"
