@@ -10,14 +10,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:text="@string/signup"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:textColor="?attr/colorSecondaryVariant"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

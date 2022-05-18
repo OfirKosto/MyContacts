@@ -17,4 +17,8 @@
     <string name="phone">טלפון</string>
     <string name="cancel">ביטול</string>
     <string name="save">שמור</string>
+    <string name="contact_name">שם איש קשר</string>
+    <string name="add_contact">הוספת איש קשר</string>
+    <string name="edit_contact">עריכת איש קשר</string>
+    <string name="contacts">אנשי קשר</string>
 </resources>

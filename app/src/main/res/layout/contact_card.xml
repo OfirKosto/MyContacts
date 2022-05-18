@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    app:cardBackgroundColor="?attr/colorSecondaryVariant">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/contact_card_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:layout_margin="5dp"
+            android:textSize="30sp"/>
+
+        <ImageButton
+            android:id="@+id/contact_card_edit_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="7dp"
+            android:background="@drawable/ic_baseline_edit_24"
+            android:backgroundTint="@color/gray"/>
+
+        <ImageButton
+            android:id="@+id/contact_card_delete_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="7dp"
+            android:background="@drawable/ic_baseline_delete_24"
+            android:backgroundTint="@color/design_default_color_error"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

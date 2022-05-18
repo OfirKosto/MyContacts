@@ -15,10 +15,9 @@
             android:layout_height="200dp"
             android:text="@string/welcome"
             android:layout_gravity="center"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorSecondaryVariant"
             android:gravity="center"
-            android:textSize="40sp"
-            android:fontFamily="sans-serif-light"/>
+            android:textSize="40sp" />
 
         <Space
             android:layout_width="wrap_content"

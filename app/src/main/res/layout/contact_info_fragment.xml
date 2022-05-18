@@ -7,54 +7,22 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="130dp"/>
+        android:layout_height="50dp"/>
 
-    <LinearLayout
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragment_contact_info_contact_name_tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:hint="@string/first_name"
-            app:boxBackgroundColor="?attr/colorSecondaryVariant"
-            app:boxStrokeColor="?attr/colorSecondary"
-            app:hintTextColor="?attr/colorSecondary"
-            app:startIconDrawable="@drawable/outline_person_24">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fragment_save_contact_first_name_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/colorOnPrimary" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:hint="@string/last_name"
-            app:boxBackgroundColor="?attr/colorSecondaryVariant"
-            app:boxStrokeColor="?attr/colorSecondary"
-            app:hintTextColor="?attr/colorSecondary"
-            app:startIconDrawable="@drawable/outline_person_24">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fragment_save_contact_last_name_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/colorOnPrimary" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
+        android:layout_height="50dp"
+        android:textSize="40sp"
+        android:textColor="?attr/colorSecondaryVariant"
+        android:layout_margin="40dp"
+        android:text="@string/contact_name"
+        android:gravity="center_horizontal"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:drawableStart="@drawable/ic_outline_phone_24"
         app:drawableTint="@color/gray"
-        android:id="@+id/fragment_save_contact_gender_et"
+        android:id="@+id/fragment_contact_info_phone_tv"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textSize="20sp"

@@ -1,13 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.ContactsFragment">
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp">
 
-</FrameLayout>
+        <ImageButton
+            android:id="@+id/fragment_contacts_exit_ib"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_round_cancel_24"
+            android:backgroundTint="@color/design_default_color_error"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fragment_contacts_contacts_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:textSize="40sp"
+            android:textColor="?attr/colorSecondaryVariant"
+            android:text="@string/contacts"
+            android:gravity="center_horizontal"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fragment_contacts_add_contact_fab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/contacts"
+            app:tint="?attr/colorOnPrimary"
+            android:src="@drawable/ic_outline_add_24"
+            android:backgroundTint="?attr/colorSecondaryVariant"
+            app:fabSize="mini"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_contacts_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"/>
+
+</LinearLayout>
