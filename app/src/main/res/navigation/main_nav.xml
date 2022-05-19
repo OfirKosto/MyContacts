@@ -11,9 +11,31 @@
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.ofir.mycontacts.view.fragments.SignupFragment"
         android:label="SignupFragment" />
+    <fragment
+        android:id="@+id/contactInfoFragment"
+        android:name="com.ofir.mycontacts.view.fragments.ContactInfoFragment"
+        android:label="ContactInfoFragment" />
+    <fragment
+        android:id="@+id/saveContactFragment"
+        android:name="com.ofir.mycontacts.view.fragments.SaveContactFragment"
+        android:label="SaveContactFragment" />
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.ofir.mycontacts.view.fragments.ContactsFragment"
+        android:label="ContactsFragment" >
+        <action
+            android:id="@+id/action_contactsFragment_to_saveContactFragment"
+            app:destination="@id/saveContactFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_contactInfoFragment"
+            app:destination="@id/contactInfoFragment" />
+    </fragment>
 </navigation>
