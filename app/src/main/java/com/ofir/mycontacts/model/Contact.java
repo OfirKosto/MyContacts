@@ -1,4 +1,4 @@
-package com.ofir.mycontacts.model.dataclasses;
+package com.ofir.mycontacts.model;
 
 import com.ofir.mycontacts.model.enums.eGenders;
 

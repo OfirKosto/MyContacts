@@ -1,14 +1,12 @@
-package com.ofir.mycontacts.model.dataclasses;
+package com.ofir.mycontacts.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.ofir.mycontacts.model.dataclasses.Contact;
-
 import java.util.ArrayList;
 
-@Entity
+@Entity(tableName = "users")
 public class User {
 
     @PrimaryKey(autoGenerate = false)
