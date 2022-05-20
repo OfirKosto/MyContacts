@@ -5,7 +5,6 @@
     <string name="no">לא</string>
     <string name="welcome">ברוך הבא</string>
     <string name="username">שם משתמש</string>
-    <string name="password">סיסמה</string>
     <string name="login">התחבר</string>
     <string name="signup">הרשם</string>
     <string name="back">חזור</string>
@@ -21,4 +20,12 @@
     <string name="add_contact">הוספת איש קשר</string>
     <string name="edit_contact">עריכת איש קשר</string>
     <string name="contacts">אנשי קשר</string>
+    <string name="username_taken">שם המשתמש הזה תפוס. נסה אחר.</string>
+    <string name="couldnt_create_your_account">לא הצליח ליצור את המשתמש, בבקשה נסה שוב.</string>
+    <string name="account_succesfully_created">המשתמש נוצר בהצלחה.</string>
+    <string name="incorrect_username_or_password">שם משתמש או סיסמה לא נכונים.</string>
+    <string name="please_fill_all_the_details">בבקשה מלא את כל הפרטים.</string>
+    <string name="shouldnt_contain_spaces">" שם המשתמש והסיסמאות לא צריכים להכיל רווחים."</string>
+    <string name="username_and_password_should_be_at_least_6_charachters">שם השמשתמש והסיסמה צריכים להכיל שישה תווים לפחות.</string>
+    <string name="password">סיסמה</string>
 </resources>

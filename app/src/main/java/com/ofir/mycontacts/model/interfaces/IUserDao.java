@@ -1,5 +1,6 @@
 package com.ofir.mycontacts.model.interfaces;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -16,7 +17,7 @@ public interface IUserDao {
     List<User> getAllUsers();
 
     @Query("SELECT * FROM users WHERE username LIKE :username")
-    User getUserByUsername(String username);
+    LiveData<User> getUserByUsername(String username);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUser(User user);

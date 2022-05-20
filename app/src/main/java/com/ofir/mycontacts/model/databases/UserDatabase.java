@@ -15,7 +15,7 @@ public abstract class UserDatabase extends RoomDatabase {
 
     public abstract IUserDao userDao();
     private static final String DATABASE_NAME = "user_db";
-    private static volatile UserDatabase m_Instance;
+    private static UserDatabase m_Instance;
 
     public static UserDatabase getInstance()
     {
