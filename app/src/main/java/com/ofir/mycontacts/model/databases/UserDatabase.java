@@ -1,16 +1,16 @@
 package com.ofir.mycontacts.model.databases;
 
-import android.content.Context;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.ofir.mycontacts.ApplicationContext;
 import com.ofir.mycontacts.model.User;
 import com.ofir.mycontacts.model.interfaces.IUserDao;
 
 @Database(entities = {User.class}, version = 1)
+@TypeConverters({ContactsConverter.class})
 public abstract class UserDatabase extends RoomDatabase {
 
     public abstract IUserDao userDao();
