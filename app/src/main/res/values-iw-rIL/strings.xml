@@ -6,7 +6,7 @@
     <string name="welcome">ברוך הבא</string>
     <string name="username">שם משתמש</string>
     <string name="login">התחבר</string>
-    <string name="signup">הרשם</string>
+    <string name="signup">הירשם</string>
     <string name="back">חזור</string>
     <string name="confirm_password">אשר סיסמה</string>
     <string name="first_name">שם פרטי</string>
@@ -24,8 +24,9 @@
     <string name="couldnt_create_your_account">לא הצליח ליצור את המשתמש, בבקשה נסה שוב.</string>
     <string name="account_succesfully_created">המשתמש נוצר בהצלחה.</string>
     <string name="incorrect_username_or_password">שם משתמש או סיסמה לא נכונים.</string>
-    <string name="please_fill_all_the_details">בבקשה מלא את כל הפרטים.</string>
-    <string name="shouldnt_contain_spaces">" שם המשתמש והסיסמאות לא צריכים להכיל רווחים."</string>
-    <string name="username_and_password_should_be_at_least_6_charachters">שם השמשתמש והסיסמה צריכים להכיל שישה תווים לפחות.</string>
+    <string name="please_fill_all_the_details">בבקשה מלא את כל השדות.</string>
+    <string name="shouldnt_contain_spaces">" שם המשתמש והסיסמה  לא אמורים להכיל רווחים."</string>
+    <string name="username_and_password_should_be_at_least_6_charachters">שם השמשתמש והסיסמה צריכים להכיל  6  תווים לפחות.</string>
     <string name="password">סיסמה</string>
+    <string name="passwords_do_not_match">הסיסמאות לא תואמות.</string>
 </resources>

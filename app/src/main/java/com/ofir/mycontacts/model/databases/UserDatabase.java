@@ -26,7 +26,7 @@ public abstract class UserDatabase extends RoomDatabase {
                 if(m_Instance == null)
                 {
                     m_Instance = Room.databaseBuilder(ApplicationContext.getContext(),
-                            UserDatabase.class, DATABASE_NAME).build();
+                            UserDatabase.class, DATABASE_NAME).addTypeConverter(new ContactsConverter()).build();
                 }
             }
         }

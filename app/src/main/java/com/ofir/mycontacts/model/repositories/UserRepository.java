@@ -53,11 +53,8 @@ public class UserRepository {
         LiveData<User> userLiveData = null;
         userLiveData = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
 
-        if(userLiveData != null)
+        if(userLiveData.getValue() != null)
         {
-            m_MessageToUser.postValue(ApplicationContext.getContext()
-                    .getResources().getString(R.string.username_taken));
-
             i_UserCreateListener.onFailure(ApplicationContext.getContext()
                     .getResources().getString(R.string.username_taken));
         }
@@ -66,7 +63,7 @@ public class UserRepository {
             User newUser = new User(i_Username, i_Password);
             UserDatabase.getInstance().userDao().insertUser(newUser);
             userLiveData = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
-            if(userLiveData == null)
+            if(userLiveData.getValue() == null)
             {
                 i_UserCreateListener.onFailure(ApplicationContext.getContext()
                         .getResources().getString(R.string.couldnt_create_your_account));
@@ -87,9 +84,9 @@ public class UserRepository {
         userLiveData = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
 
         //TODO CHECK IF userLiveData.getValue() != null?
-        if(userLiveData != null)
+        if(userLiveData.getValue() != null)
         {
-            if(i_Password.equals(userLiveData.getValue().getPassword()))
+            if(i_Password.equals(userLiveData.getValue().getM_Password()))
             {
                 m_CurrentUserObserver = new Observer<User>() {
                     @Override
@@ -120,7 +117,7 @@ public class UserRepository {
         if(m_CurrentUser.getValue() != null)
         {
             LiveData<User> user = UserDatabase.getInstance().userDao()
-                    .getUserByUsername(m_CurrentUser.getValue().getUsername());
+                    .getUserByUsername(m_CurrentUser.getValue().getM_Username());
 
             user.removeObserver(m_CurrentUserObserver);
             m_CurrentUserObserver = null;

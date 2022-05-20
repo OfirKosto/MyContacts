@@ -59,19 +59,24 @@ public class SignupFragment extends Fragment {
                         new IUserCreateListener() {
                             @Override
                             public void onSuccess(String s) {
-                                Snackbar.make(getView(), s, Snackbar.LENGTH_SHORT);
+                                showMessageToUser(s);
                                 m_BackBtn.callOnClick();
                             }
 
                             @Override
                             public void onFailure(String s) {
-                                Snackbar.make(getView(), s, Snackbar.LENGTH_SHORT);
+                                showMessageToUser(s);
                             }
                         });
             }
         });
 
         m_BackBtn.setOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
+    }
+
+    public void showMessageToUser(String message)
+    {
+        Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
     }
 
 }

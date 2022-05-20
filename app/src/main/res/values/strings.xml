@@ -24,7 +24,8 @@
     <string name="couldnt_create_your_account">Couldn\'t create your account, please try again.</string>
     <string name="account_succesfully_created">Account succesfully created.</string>
     <string name="incorrect_username_or_password">Incorrect username or password.</string>
-    <string name="please_fill_all_the_details">Please fill all the details.</string>
-    <string name="shouldnt_contain_spaces">The username and passwords shouldn\'t contain spaces.</string>
+    <string name="please_fill_all_the_details">Please fill all the fields.</string>
+    <string name="shouldnt_contain_spaces">The username and password shouldn\'t contain spaces.</string>
     <string name="username_and_password_should_be_at_least_6_charachters">Username and password should contain at least 6 charachters.</string>
+    <string name="passwords_do_not_match">Passwords do not match.</string>
 </resources>

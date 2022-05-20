@@ -20,6 +20,7 @@ public class ContactsConverter {
         return json;
     }
 
+    @TypeConverter
     public ArrayList<Contact> stringToContactsList(String value)
     {
         Type listType = new TypeToken<ArrayList<String>>() {}.getType();
