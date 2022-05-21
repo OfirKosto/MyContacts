@@ -1,5 +1,6 @@
 package com.ofir.mycontacts.view.viewmodels;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.ofir.mycontacts.ApplicationContext;
@@ -11,11 +12,20 @@ public class SignupViewModel extends ViewModel {
         //TODO check flip phone details deleted
 
     private final int SIGNUP_FIELDS_MIN_LENGTH = 6;
+    private MutableLiveData<String> m_MessageToUser;
+    private MutableLiveData<Boolean> m_FinishedSignupFlag;
 
-    public SignupViewModel(){}
+    public SignupViewModel()
+    {
+        m_MessageToUser = new MutableLiveData<>();
+        m_FinishedSignupFlag = new MutableLiveData<>();
+    }
 
-    public void signupNewUser(String i_Username, String i_Password,
-                              String i_ConfirmPassword, IUserCreateListener i_UserCreateListener)
+    public MutableLiveData<String> getMessageToUser(){return m_MessageToUser;}
+
+    public MutableLiveData<Boolean> getFinishedSignupFlag(){return m_FinishedSignupFlag;}
+
+    public void signupNewUser(String i_Username, String i_Password, String i_ConfirmPassword)
     {
 
         if(!i_Username.isEmpty() && !i_Password.isEmpty() && !i_ConfirmPassword.isEmpty())
@@ -29,31 +39,43 @@ public class SignupViewModel extends ViewModel {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                UserRepository.getInstance().signupNewUser(i_Username, i_Password, i_UserCreateListener);
+                                UserRepository.getInstance().signupNewUser(i_Username, i_Password, new IUserCreateListener() {
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        m_MessageToUser.postValue(s);
+                                        m_FinishedSignupFlag.postValue(true);
+                                    }
+
+                                    @Override
+                                    public void onFailure(String s) {
+                                        m_MessageToUser.postValue(s);
+                                        m_FinishedSignupFlag.postValue(false);
+                                    }
+                                });
                             }
                         }).start();
                     }
                     else
                     {
-                        i_UserCreateListener.onFailure(ApplicationContext.getContext()
+                        m_MessageToUser.postValue(ApplicationContext.getContext()
                                 .getResources().getString(R.string.passwords_do_not_match));
                     }
                 }
                 else
                 {
-                    i_UserCreateListener.onFailure(ApplicationContext.getContext()
+                    m_MessageToUser.postValue(ApplicationContext.getContext()
                             .getResources().getString(R.string.username_and_password_should_be_at_least_6_charachters));
                 }
             }
             else
             {
-                i_UserCreateListener.onFailure(ApplicationContext.getContext()
+                m_MessageToUser.postValue(ApplicationContext.getContext()
                         .getResources().getString(R.string.shouldnt_contain_spaces));
             }
         }
         else
         {
-            i_UserCreateListener.onFailure(ApplicationContext.getContext()
+            m_MessageToUser.postValue(ApplicationContext.getContext()
                     .getResources().getString(R.string.please_fill_all_the_details));
         }
     }

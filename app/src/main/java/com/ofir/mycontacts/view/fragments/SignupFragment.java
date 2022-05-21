@@ -1,5 +1,6 @@
 package com.ofir.mycontacts.view.fragments;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -40,9 +41,12 @@ public class SignupFragment extends Fragment {
         m_ViewModel = new ViewModelProvider(this).get(SignupViewModel.class);
 
         initUi(rootView);
+        initObservers();
 
         return rootView;
     }
+
+
 
     private void initUi(View rootView) {
         m_UsernameEditText = rootView.findViewById(R.id.fragment_signup_username_et);
@@ -55,28 +59,31 @@ public class SignupFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 m_ViewModel.signupNewUser(m_UsernameEditText.getText().toString()
-                        , m_PasswordEditText.getText().toString(), m_ConfirmPasswordEditText.getText().toString(),
-                        new IUserCreateListener() {
-                            @Override
-                            public void onSuccess(String s) {
-                                showMessageToUser(s);
-                                m_BackBtn.callOnClick();
-                            }
-
-                            @Override
-                            public void onFailure(String s) {
-                                showMessageToUser(s);
-                            }
-                        });
+                        , m_PasswordEditText.getText().toString(), m_ConfirmPasswordEditText.getText().toString());
             }
         });
 
         m_BackBtn.setOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
     }
 
-    public void showMessageToUser(String message)
+    private void initObservers()
     {
-        Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
+        m_ViewModel.getMessageToUser().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Snackbar.make(getView(), s, Snackbar.LENGTH_LONG).show();
+            }
+        });
+
+        m_ViewModel.getFinishedSignupFlag().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean)
+                {
+                    m_BackBtn.callOnClick();
+                }
+            }
+        });
     }
 
 }

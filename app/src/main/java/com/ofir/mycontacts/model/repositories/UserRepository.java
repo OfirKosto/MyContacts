@@ -49,11 +49,11 @@ public class UserRepository {
     //TODO add listener? post value now
     public void signupNewUser(String i_Username, String i_Password, IUserCreateListener i_UserCreateListener)
     {
-        //TODO check what return if not found
-        LiveData<User> userLiveData = null;
-        userLiveData = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
 
-        if(userLiveData.getValue() != null)
+        User user = null;
+        user = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
+
+        if(user != null)
         {
             i_UserCreateListener.onFailure(ApplicationContext.getContext()
                     .getResources().getString(R.string.username_taken));
@@ -62,8 +62,8 @@ public class UserRepository {
         {
             User newUser = new User(i_Username, i_Password);
             UserDatabase.getInstance().userDao().insertUser(newUser);
-            userLiveData = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
-            if(userLiveData.getValue() == null)
+            user = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
+            if(user == null)
             {
                 i_UserCreateListener.onFailure(ApplicationContext.getContext()
                         .getResources().getString(R.string.couldnt_create_your_account));
@@ -80,13 +80,12 @@ public class UserRepository {
     public void loginUser(String i_Username, String i_Password)
     {
         //TODO check what return if not found
-        LiveData<User> userLiveData = null;
-        userLiveData = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
+        User user = null;
+        user = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
 
-        //TODO CHECK IF userLiveData.getValue() != null?
-        if(userLiveData.getValue() != null)
+        if(user != null)
         {
-            if(i_Password.equals(userLiveData.getValue().getM_Password()))
+            if(i_Password.equals(user.getM_Password()))
             {
                 m_CurrentUserObserver = new Observer<User>() {
                     @Override
@@ -94,9 +93,9 @@ public class UserRepository {
                         m_CurrentUser.postValue(user);
                     }
                 };
-                userLiveData.observeForever(m_CurrentUserObserver);
+//                userLiveData.observeForever(m_CurrentUserObserver);
 
-                m_CurrentUser.postValue(userLiveData.getValue());
+                m_CurrentUser.postValue(user);
             }
             else
             {
@@ -116,10 +115,10 @@ public class UserRepository {
     {
         if(m_CurrentUser.getValue() != null)
         {
-            LiveData<User> user = UserDatabase.getInstance().userDao()
+            User user = UserDatabase.getInstance().userDao()
                     .getUserByUsername(m_CurrentUser.getValue().getM_Username());
 
-            user.removeObserver(m_CurrentUserObserver);
+//            user.removeObserver(m_CurrentUserObserver);
             m_CurrentUserObserver = null;
             m_CurrentUser = new MutableLiveData<>();
         }

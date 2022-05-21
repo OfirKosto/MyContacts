@@ -17,7 +17,7 @@ public interface IUserDao {
     List<User> getAllUsers();
 
     @Query("SELECT * FROM users WHERE username LIKE :username")
-    LiveData<User> getUserByUsername(String username);
+    User getUserByUsername(String username);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUser(User user);
