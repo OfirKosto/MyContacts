@@ -62,10 +62,7 @@ public class ContactsFragment extends Fragment {
                     @Override
                     public void userResponse(boolean i_IsUserAccepted) {
                         if (i_IsUserAccepted) {
-                            m_ViewModel.logOut();
-                            //TODO CHECK LOGOUT
-                            NavHostFragment.findNavController(ContactsFragment.this).popBackStack();
-//                            logOut();
+                            logOut();
                         }
                     }
                 });
@@ -161,7 +158,6 @@ public class ContactsFragment extends Fragment {
                     @Override
                     public void userResponse(boolean i_IsUserAccepted) {
                         if (i_IsUserAccepted) {
-                            //TODO CHECK ACCESS
                             m_ViewModel.deleteContact(contact, position);
                         }
                     }
@@ -178,7 +174,8 @@ public class ContactsFragment extends Fragment {
 
     private void logOut()
     {
-
+        m_ViewModel.logOut();
+        NavHostFragment.findNavController(ContactsFragment.this).popBackStack();
     }
 
     @Override
