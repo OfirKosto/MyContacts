@@ -10,7 +10,7 @@ public class JsonGetGenderResponse {
     @SerializedName("gender")
     private String m_Gender;
 
-    public eGenders getGender() {
-        return eGenders.valueOf(m_Gender);
+    public String getGender() {
+        return m_Gender;
     }
 }

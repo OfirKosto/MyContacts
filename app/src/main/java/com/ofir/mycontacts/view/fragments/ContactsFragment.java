@@ -61,6 +61,8 @@ public class ContactsFragment extends Fragment {
                     public void userResponse(boolean i_IsUserAccepted) {
                         if (i_IsUserAccepted) {
                             m_ViewModel.logOut();
+                            //TODO CHECK LOGOUT
+                            logOut();
                         }
                     }
                 });
@@ -119,7 +121,7 @@ public class ContactsFragment extends Fragment {
                 bundle.putString("name", contact.getFirstName() + " " + contact.getLastName());
                 bundle.putString("phone_number", contact.getPhoneNumber());
                 bundle.putString("email", contact.getEmail());
-                bundle.putString("gender", contact.getGender().m_Gender);
+                bundle.putString("gender", contact.getGender());
 
                 NavHostFragment.findNavController(ContactsFragment.this)
                         .navigate(R.id.action_contactsFragment_to_contactInfoFragment, bundle);
@@ -137,7 +139,7 @@ public class ContactsFragment extends Fragment {
                 bundle.putString("last_name", contact.getLastName());
                 bundle.putString("phone_number", contact.getPhoneNumber());
                 bundle.putString("email", contact.getEmail());
-                bundle.putString("gender", contact.getGender().m_Gender);
+                bundle.putString("gender", contact.getGender());
                 bundle.putInt("position", position);
 
                 NavHostFragment.findNavController(ContactsFragment.this)
@@ -166,9 +168,14 @@ public class ContactsFragment extends Fragment {
         };
     }
 
-    public void refreshRecyclerView()
+    private void refreshRecyclerView()
     {
         m_ViewModel.getUserContacts();
+    }
+
+    private void logOut()
+    {
+        NavHostFragment.findNavController(this).popBackStack();
     }
 
     @Override

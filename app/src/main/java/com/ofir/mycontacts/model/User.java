@@ -69,5 +69,7 @@ public class User {
         m_Contacts.remove(i_ContactIndex);
     }
 
+    public void setContact(int i_ContactIndex, Contact i_Contact){ m_Contacts.set(i_ContactIndex, i_Contact);}
+
     public int getNumberOfContacts(){return m_Contacts.size();}
 }

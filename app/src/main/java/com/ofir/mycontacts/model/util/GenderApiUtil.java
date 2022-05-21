@@ -45,7 +45,7 @@ public class GenderApiUtil {
         return m_Instance;
     }
 
-    public void getArticlesByCategory( String i_Name, Callback<JsonGetGenderResponse> iCallback)
+    public void getGenderByName( String i_Name, Callback<JsonGetGenderResponse> iCallback)
     {
         Call<JsonGetGenderResponse> articlesCall = m_CallService.getGenderByName(i_Name);
         articlesCall.enqueue(iCallback);

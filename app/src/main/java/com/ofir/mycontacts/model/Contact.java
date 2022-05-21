@@ -10,9 +10,17 @@ public class Contact {
     private String m_LastName;
     private String m_PhoneNumber;
     private String m_Email;
-    private eGenders m_Gender;
+    private String m_Gender;
 
-    public Contact(String i_FirstName, String i_LastName,String i_PhoneNumber, String i_Email, eGenders i_Gender) {
+    public Contact(String i_FirstName, String i_LastName,String i_PhoneNumber, String i_Email) {
+        m_FirstName = i_FirstName;
+        m_LastName = i_LastName;
+        m_PhoneNumber = i_PhoneNumber;
+        m_Email = i_Email;
+        m_Gender = "";
+    }
+
+    public Contact(String i_FirstName, String i_LastName,String i_PhoneNumber, String i_Email, String i_Gender) {
         m_FirstName = i_FirstName;
         m_LastName = i_LastName;
         m_PhoneNumber = i_PhoneNumber;
@@ -52,11 +60,11 @@ public class Contact {
         m_Email = i_Email;
     }
 
-    public eGenders getGender() {
+    public String getGender() {
         return m_Gender;
     }
 
-    public void setGender(eGenders i_Gender) {
+    public void setGender(String i_Gender) {
         m_Gender = i_Gender;
     }
 
@@ -64,6 +72,6 @@ public class Contact {
     {
         return (i_Contact.getFirstName().equals(m_FirstName) && i_Contact.getLastName().equals(m_LastName) &&
                 i_Contact.getPhoneNumber().equals(m_PhoneNumber) && i_Contact.getEmail().equals(m_Email)
-                && i_Contact.getGender().m_Gender.equals(m_Gender.m_Gender));
+                && i_Contact.getGender().equals(m_Gender));
     }
 }

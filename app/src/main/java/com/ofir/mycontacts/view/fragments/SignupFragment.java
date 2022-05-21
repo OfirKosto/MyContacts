@@ -30,8 +30,6 @@ public class SignupFragment extends Fragment {
     private Button m_SignupBtn;
     private Button m_BackBtn;
 
-
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

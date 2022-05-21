@@ -32,4 +32,10 @@
     <string name="somting_wrong_happend">Somting wrong happened! Please reconnect.</string>
     <string name="yes_no_delete_contact">Are you sure you want to delete this contact?</string>
     <string name="failed_to_delete_contact">Failed to delete contact. Please try again.</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="other">other</string>
+    <string name="please_enter_contact_first_name">Please enter contact first name.</string>
+    <string name="failed_to_update_contact">Failed to update the contact. Please try again.</string>
+    <string name="failed_to_add_contact">Failed to add contact. Please try agian.</string>
 </resources>
