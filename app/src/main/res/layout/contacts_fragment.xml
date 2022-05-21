@@ -12,7 +12,7 @@
         android:layout_margin="10dp">
 
         <ImageButton
-            android:id="@+id/fragment_contacts_exit_ib"
+            android:id="@+id/fragment_contacts_logout_ib"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

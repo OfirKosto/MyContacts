@@ -41,8 +41,6 @@ public class LoginFragment extends Fragment {
         return rootView;
     }
 
-
-
     private void initUi(View rootView) {
         m_UsernameEditText = rootView.findViewById(R.id.fragment_login_username_et);
         m_PasswordEditText = rootView.findViewById(R.id.fragment_login_password_et);

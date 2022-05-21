@@ -29,4 +29,6 @@
     <string name="username_and_password_should_be_at_least_6_charachters">שם השמשתמש והסיסמה צריכים להכיל  6  תווים לפחות.</string>
     <string name="password">סיסמה</string>
     <string name="passwords_do_not_match">הסיסמאות לא תואמות.</string>
+    <string name="yes_no_logout">האם אתה בטוח שאתה רוצה להתנתק?</string>
+    <string name="somting_wrong_happend">קרתה שגיאה! בבקשה התחבר מחדש.</string>
 </resources>

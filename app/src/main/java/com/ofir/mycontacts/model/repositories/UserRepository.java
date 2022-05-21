@@ -10,6 +10,7 @@ import com.ofir.mycontacts.R;
 import com.ofir.mycontacts.model.Contact;
 import com.ofir.mycontacts.model.User;
 import com.ofir.mycontacts.model.databases.UserDatabase;
+import com.ofir.mycontacts.model.interfaces.IGetUserContactsListener;
 import com.ofir.mycontacts.model.interfaces.IUserCreateListener;
 import com.ofir.mycontacts.model.interfaces.IUserLoginListener;
 
@@ -101,16 +102,23 @@ public class UserRepository {
         m_CurrentUser = null;
     }
 
-    //TODO GET USER SOMEHOW (Not surly needed)
-//    public ArrayList<Contact> getUserContacts()
-//    {
-//        if(m_CurrentUser == null)
-//        {
-//            return null;
-//        }
-//
-//        return m_CurrentUser.postValue();
-//    }
+    public void getUserContacts(IGetUserContactsListener i_GetUserContactsListener)
+    {
+        if(m_CurrentUser == null)
+        {
+            i_GetUserContactsListener.onFailure(ApplicationContext.getContext()
+                    .getResources().getString(R.string.somting_wrong_happend));
+        }
+        else
+        {
+            refreshCurrentUser();
+            i_GetUserContactsListener.onSuccess(m_CurrentUser.getM_Contacts());
+        }
+    }
+
+    private void refreshCurrentUser() {
+        m_CurrentUser = UserDatabase.getInstance().userDao().getUserByUsername(m_CurrentUser.getM_Username());
+    }
 
     public void addContactToCurrentUser(Contact i_Contact)
     {
