@@ -16,7 +16,7 @@ public class GenderApiUtil {
 
     private static GenderApiUtil m_Instance = null;
 
-    private final String BASE_URL = "https://api.genderize.io/";
+    private final String BASE_URL = "https://api.genderize.io";
     private IGenderApi m_CallService;
 
     private GenderApiUtil()

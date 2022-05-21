@@ -38,4 +38,6 @@
     <string name="please_enter_contact_first_name">Please enter contact first name.</string>
     <string name="failed_to_update_contact">Failed to update the contact. Please try again.</string>
     <string name="failed_to_add_contact">Failed to add contact. Please try agian.</string>
+    <string name="user_is_disconnected_please_reconncect">User is disconnected. please reconnect.</string>
+    <string name="empty">" "</string>
 </resources>

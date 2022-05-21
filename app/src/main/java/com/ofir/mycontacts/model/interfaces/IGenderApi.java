@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface IGenderApi {
-    @GET()
+    @GET("/")
     Call<JsonGetGenderResponse> getGenderByName(@Query("name") String i_Name);
 }

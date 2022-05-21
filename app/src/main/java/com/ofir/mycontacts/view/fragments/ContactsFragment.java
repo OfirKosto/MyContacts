@@ -15,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.ofir.mycontacts.R;
 import com.ofir.mycontacts.model.Contact;
@@ -29,8 +31,8 @@ public class ContactsFragment extends Fragment {
 
     private ContactsViewModel m_ViewModel;
 
-    private Button m_LogoutBtn;
-    private Button m_AddContactBtn;
+    private ImageButton m_LogoutBtn;
+    private FloatingActionButton m_AddContactBtn;
     private RecyclerView m_ContactsRecyclerView;
 
     private ArrayList<Contact> m_ContactsArrayList;
@@ -62,7 +64,8 @@ public class ContactsFragment extends Fragment {
                         if (i_IsUserAccepted) {
                             m_ViewModel.logOut();
                             //TODO CHECK LOGOUT
-                            logOut();
+                            NavHostFragment.findNavController(ContactsFragment.this).popBackStack();
+//                            logOut();
                         }
                     }
                 });
@@ -119,7 +122,7 @@ public class ContactsFragment extends Fragment {
             public void onTextViewClicked(Contact contact) {
                 Bundle bundle = new Bundle();
                 bundle.putString("name", contact.getFirstName() + " " + contact.getLastName());
-                bundle.putString("phone_number", contact.getPhoneNumber());
+                bundle.putString("phone", contact.getPhoneNumber());
                 bundle.putString("email", contact.getEmail());
                 bundle.putString("gender", contact.getGender());
 
@@ -137,7 +140,7 @@ public class ContactsFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("first_name", contact.getFirstName());
                 bundle.putString("last_name", contact.getLastName());
-                bundle.putString("phone_number", contact.getPhoneNumber());
+                bundle.putString("phone", contact.getPhoneNumber());
                 bundle.putString("email", contact.getEmail());
                 bundle.putString("gender", contact.getGender());
                 bundle.putInt("position", position);
@@ -175,7 +178,7 @@ public class ContactsFragment extends Fragment {
 
     private void logOut()
     {
-        NavHostFragment.findNavController(this).popBackStack();
+
     }
 
     @Override

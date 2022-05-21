@@ -68,8 +68,11 @@ public class LoginFragment extends Fragment {
         m_ViewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                NavHostFragment.findNavController(LoginFragment.this)
-                        .navigate(R.id.action_loginFragment_to_contactsFragment);
+                if (user != null)
+                {
+                    NavHostFragment.findNavController(LoginFragment.this)
+                            .navigate(R.id.action_loginFragment_to_contactsFragment);
+                }
             }
         });
 

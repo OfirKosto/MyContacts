@@ -2,7 +2,6 @@ package com.ofir.mycontacts.view.fragments;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,19 +12,15 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.ofir.mycontacts.ApplicationContext;
 import com.ofir.mycontacts.R;
 import com.ofir.mycontacts.model.Contact;
-import com.ofir.mycontacts.model.enums.eGenders;
 import com.ofir.mycontacts.view.viewmodels.SaveContactViewModel;
+
 
 public class SaveContactFragment extends Fragment {
 
@@ -39,12 +34,11 @@ public class SaveContactFragment extends Fragment {
     private EditText m_LastNameEd;
     private EditText m_PhoneEd;
     private EditText m_EmailEd;
+    private EditText m_GenderEd;
     private Button m_CancelBtn;
     private Button m_SaveBtn;
-    //TODO THE SPINNER
-    private RelativeLayout m_GenderRl;
-    private Spinner m_GenderSpinner;
-    ArrayAdapter<CharSequence> m_GenderSpinnerAdapter;
+
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -63,13 +57,13 @@ public class SaveContactFragment extends Fragment {
         m_LastNameEd = rootView.findViewById(R.id.fragment_save_contact_last_name_et);
         m_PhoneEd = rootView.findViewById(R.id.fragment_save_contact_phone_et);
         m_EmailEd = rootView.findViewById(R.id.fragment_save_contact_email_et);
+        m_GenderEd = rootView.findViewById(R.id.fragment_save_contact_gender_ed);
         m_CancelBtn = rootView.findViewById(R.id.fragment_save_contact_cancel_btn);
         m_SaveBtn = rootView.findViewById(R.id.fragment_save_contact_save_btn);
-        m_GenderRl = rootView.findViewById(R.id.fragment_save_contact_gender_relative_layout);
-        m_GenderSpinner = rootView.findViewById(R.id.fragment_save_contact_gender_spinner);
 
         Bundle bundle = getArguments();
-        if(bundle != null)
+        //TODO CHECK IS EMPTY GOOD FROM EDIT
+        if(!bundle.isEmpty())
         {
             m_isEditMode = true;
             m_TitleTv.setText(R.string.edit_contact);
@@ -77,21 +71,14 @@ public class SaveContactFragment extends Fragment {
             m_LastNameEd.setText(bundle.getString("last_name"));
             m_PhoneEd.setText(bundle.getString("phone"));
             m_EmailEd.setText(bundle.getString("email"));
+            m_GenderEd.setText(bundle.getString("gender"));
             m_ContactToEditPosition = bundle.getInt("position");
 
-            m_GenderRl.setVisibility(View.VISIBLE);
-
-            m_GenderSpinnerAdapter = ArrayAdapter.createFromResource(ApplicationContext.getContext(),
-                    R.array.genders_array, android.R.layout.simple_spinner_item);
-            //TODO CHECK SPINNER POSITION
-            int spinnerPosition = eGenders.valueOf(bundle.getString("gender")).ordinal();
-            m_GenderSpinnerAdapter.setDropDownViewResource(spinnerPosition);
-            m_GenderSpinner.setAdapter(m_GenderSpinnerAdapter);
         }
         else
         {
             m_isEditMode = false;
-            m_GenderRl.setVisibility(View.GONE);
+            m_GenderEd.setVisibility(View.GONE);
         }
 
         m_CancelBtn.setOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
@@ -109,7 +96,7 @@ public class SaveContactFragment extends Fragment {
                             m_LastNameEd.getText().toString(),
                             m_PhoneEd.getText().toString(),
                             m_EmailEd.getText().toString(),
-                            eGenders.values()[m_GenderSpinner.getSelectedItemPosition()].m_Gender));
+                            m_GenderEd.getText().toString()));
                 }
             });
         }
@@ -147,7 +134,5 @@ public class SaveContactFragment extends Fragment {
             }
         });
     }
-
-
 
 }

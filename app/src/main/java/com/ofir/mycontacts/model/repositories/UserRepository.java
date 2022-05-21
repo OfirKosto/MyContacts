@@ -11,6 +11,7 @@ import com.ofir.mycontacts.model.util.*;
 import com.ofir.mycontacts.model.util.GenderApiUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -106,7 +107,7 @@ public class UserRepository {
         if(m_CurrentUser == null)
         {
             i_GetUserContactsListener.onFailure(ApplicationContext.getContext()
-                    .getResources().getString(R.string.somting_wrong_happend));
+                    .getResources().getString(R.string.user_is_disconnected_please_reconncect));
         }
         else
         {
@@ -172,30 +173,54 @@ public class UserRepository {
         getGenderForName(i_NewContact.getFirstName(), new IActionListener<String>() {
             @Override
             public void onSuccess(String data) {
-                i_NewContact.setGender(data);
+
+                ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(ApplicationContext.getContext().getResources().getStringArray(R.array.genders_array)));
+
+                if(data.equals("male"))
+                {
+                    i_NewContact.setGender(arrayList.get(1));
+                }
+                else if (data.equals("female"))
+                {
+                    i_NewContact.setGender(arrayList.get(2));
+                }
+                else
+                {
+                    i_NewContact.setGender(arrayList.get(0));
+                }
+
+                addContact(i_NewContact, i_AddContactListener);
             }
 
             @Override
             public void onFailure(String s) {
-
+                i_NewContact.setGender(" ");
+                addContact(i_NewContact, i_AddContactListener);
             }
         });
+    }
 
+    private void addContact(Contact i_Contact, IActionListener<Boolean> i_AddContactListener)
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                m_CurrentUser.addContact(i_Contact);
+                UserDatabase.getInstance().userDao().insertUser(m_CurrentUser);
 
-        m_CurrentUser.addContact(i_NewContact);
-        UserDatabase.getInstance().userDao().insertUser(m_CurrentUser);
-
-        User user = UserDatabase.getInstance().userDao().getUserByUsername(m_CurrentUser.getM_Username());
-        if(user.getNumberOfContacts() == m_CurrentUser.getNumberOfContacts())
-        {
-            m_CurrentUser = user;
-            i_AddContactListener.onSuccess(true);
-        }
-        else
-        {
-            i_AddContactListener.onFailure(ApplicationContext.getContext()
-                    .getResources().getString(R.string.failed_to_add_contact));
-        }
+                User user = UserDatabase.getInstance().userDao().getUserByUsername(m_CurrentUser.getM_Username());
+                if(user.getNumberOfContacts() == m_CurrentUser.getNumberOfContacts())
+                {
+                    m_CurrentUser = user;
+                    i_AddContactListener.onSuccess(true);
+                }
+                else
+                {
+                    i_AddContactListener.onFailure(ApplicationContext.getContext()
+                            .getResources().getString(R.string.failed_to_add_contact));
+                }
+            }
+        }).start();
     }
 
     private void getGenderForName(String i_Name, IActionListener<String> i_GetGenderForNameListener)
@@ -209,19 +234,20 @@ public class UserRepository {
                     {
                         if(response.body().getGender() != null)
                         {
+                            String s = response.body().getGender();
                             i_GetGenderForNameListener.onSuccess(response.body().getGender());
                         }
                     }
                 }
                 else
                 {
-                    i_GetGenderForNameListener.onFailure("");
+                    i_GetGenderForNameListener.onFailure("none");
                 }
             }
 
             @Override
             public void onFailure(Call<JsonGetGenderResponse> call, Throwable t) {
-                i_GetGenderForNameListener.onFailure("");
+                i_GetGenderForNameListener.onFailure("none");
             }
         });
     }

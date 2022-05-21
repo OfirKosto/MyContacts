@@ -39,4 +39,6 @@
     <string name="please_enter_contact_first_name">בבקשה רשום את השם הפרטי של איש הקשר.</string>
     <string name="failed_to_update_contact">נכשל לעדכן את איש הקשר. בבקשה נסה שוב.</string>
     <string name="failed_to_add_contact">נכשל להוסיף איש קשר. בבקשה נסה שוב.</string>
+    <string name="user_is_disconnected_please_reconncect">המשתמש מנותק. בבקשה התחבר מחדש.</string>
+    <string name="empty">" "</string>
 </resources>

@@ -49,7 +49,7 @@ public class ContactInfoFragment extends Fragment {
         if(bundle != null)
         {
             String temp;
-            temp = m_NameTv.getText().toString() + ": " + bundle.getString("name");
+            temp = bundle.getString("name");
             m_NameTv.setText(temp);
 
             temp = m_PhoneTv.getText().toString() + ": " + bundle.getString("phone");

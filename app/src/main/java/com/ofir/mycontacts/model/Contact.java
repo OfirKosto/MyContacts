@@ -1,9 +1,5 @@
 package com.ofir.mycontacts.model;
 
-import androidx.annotation.Nullable;
-
-import com.ofir.mycontacts.model.enums.eGenders;
-
 public class Contact {
 
     private String m_FirstName;
