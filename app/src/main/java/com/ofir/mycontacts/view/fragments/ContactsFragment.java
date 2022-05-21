@@ -55,10 +55,11 @@ public class ContactsFragment extends Fragment {
         m_LogoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                YesNoDialogFragment yesNoDialogFragment = new YesNoDialogFragment(getResources().getString(R.string.yes_no_logout), new YesNoDialogFragment.IYesNoDialogFragmentListener() {
+                YesNoDialogFragment yesNoDialogFragment = new YesNoDialogFragment(getResources()
+                        .getString(R.string.yes_no_logout), new YesNoDialogFragment.IYesNoDialogFragmentListener() {
                     @Override
-                    public void userResponse(boolean iIsUserAccepted) {
-                        if (iIsUserAccepted) {
+                    public void userResponse(boolean i_IsUserAccepted) {
+                        if (i_IsUserAccepted) {
                             m_ViewModel.logOut();
                         }
                     }
@@ -114,7 +115,14 @@ public class ContactsFragment extends Fragment {
         return new ContactAdapter.NameTextViewListener() {
             @Override
             public void onTextViewClicked(Contact contact) {
-                //TODO IMPLEMENT
+                Bundle bundle = new Bundle();
+                bundle.putString("name", contact.getFirstName() + " " + contact.getLastName());
+                bundle.putString("phone_number", contact.getPhoneNumber());
+                bundle.putString("email", contact.getEmail());
+                bundle.putString("gender", contact.getGender().m_Gender);
+
+                NavHostFragment.findNavController(ContactsFragment.this)
+                        .navigate(R.id.action_contactsFragment_to_contactInfoFragment, bundle);
             }
         };
     }
@@ -124,7 +132,16 @@ public class ContactsFragment extends Fragment {
         return new ContactAdapter.EditImageButtonListener() {
             @Override
             public void onButtonClicked(Contact contact, int position) {
-                //TODO IMPLEMENT
+                Bundle bundle = new Bundle();
+                bundle.putString("first_name", contact.getFirstName());
+                bundle.putString("last_name", contact.getLastName());
+                bundle.putString("phone_number", contact.getPhoneNumber());
+                bundle.putString("email", contact.getEmail());
+                bundle.putString("gender", contact.getGender().m_Gender);
+                bundle.putInt("position", position);
+
+                NavHostFragment.findNavController(ContactsFragment.this)
+                        .navigate(R.id.action_contactsFragment_to_saveContactFragment, bundle);
             }
         };
     }
@@ -134,7 +151,17 @@ public class ContactsFragment extends Fragment {
         return new ContactAdapter.DeleteImageButtonListener() {
             @Override
             public void onButtonClicked(Contact contact, int position) {
-                //TODO IMPLEMENT
+                YesNoDialogFragment yesNoDialogFragment = new YesNoDialogFragment(getResources()
+                        .getString(R.string.yes_no_delete_contact), new YesNoDialogFragment.IYesNoDialogFragmentListener() {
+                    @Override
+                    public void userResponse(boolean i_IsUserAccepted) {
+                        if (i_IsUserAccepted) {
+                            //TODO CHECK ACCESS
+                            m_ViewModel.deleteContact(contact, position);
+                        }
+                    }
+                });
+                yesNoDialogFragment.show(getActivity().getSupportFragmentManager(), YesNoDialogFragment.getDialogTag());
             }
         };
     }

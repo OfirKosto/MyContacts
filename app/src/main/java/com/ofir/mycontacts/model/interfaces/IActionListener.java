@@ -1,7 +1,8 @@
 package com.ofir.mycontacts.model.interfaces;
 
-public interface IUserCreateListener {
+public interface IActionListener<T> {
 
-    void onSuccess(String s);
+    void onSuccess(T data);
     void onFailure(String s);
+
 }

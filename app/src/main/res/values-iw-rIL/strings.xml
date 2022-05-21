@@ -31,4 +31,6 @@
     <string name="passwords_do_not_match">הסיסמאות לא תואמות.</string>
     <string name="yes_no_logout">האם אתה בטוח שאתה רוצה להתנתק?</string>
     <string name="somting_wrong_happend">קרתה שגיאה! בבקשה התחבר מחדש.</string>
+    <string name="yes_no_delete_contact">האם אתה בטוח שאתה רוצה למחוק איש קשר זה?</string>
+    <string name="failed_to_delete_contact">נכשל למחוק את איש הקשר. בבקשה נסה שוב.</string>
 </resources>

@@ -16,13 +16,13 @@ import com.ofir.mycontacts.R;
 public class YesNoDialogFragment extends DialogFragment
 {
     private static final String DIALOG_TAG = "Yes No Dialog Fragment";
-    private String mDialogMessage;
-    private IYesNoDialogFragmentListener mCallback;
+    private String m_DialogMessage;
+    private IYesNoDialogFragmentListener m_Callback;
 
-    public YesNoDialogFragment(String iDialogMessage, IYesNoDialogFragmentListener iCallback)
+    public YesNoDialogFragment(String i_DialogMessage, IYesNoDialogFragmentListener i_Callback)
     {
-        mDialogMessage = iDialogMessage;
-        mCallback = iCallback;
+        m_DialogMessage = i_DialogMessage;
+        m_Callback = i_Callback;
     }
 
     public static String getDialogTag(){
@@ -31,7 +31,7 @@ public class YesNoDialogFragment extends DialogFragment
 
     public interface IYesNoDialogFragmentListener
     {
-        public void userResponse(boolean iIsUserAccepted);
+        public void userResponse(boolean i_IsUserAccepted);
     }
     @Nullable
     @Override
@@ -40,17 +40,17 @@ public class YesNoDialogFragment extends DialogFragment
         View rootView = inflater.inflate(R.layout.dialog_fragment_yes_no, container, false);
 
         TextView displayMsgTv = rootView.findViewById(R.id.dialog_fragment_yes_no_user_question_tv);
-        displayMsgTv.setText(mDialogMessage);
+        displayMsgTv.setText(m_DialogMessage);
 
         TextView yesBtn = rootView.findViewById(R.id.dialog_fragment_yes_no_yes_tv);
         yesBtn.setOnClickListener(v -> {
-            mCallback.userResponse(true);
+            m_Callback.userResponse(true);
             getDialog().dismiss();
         });
 
         TextView noBtn = rootView.findViewById(R.id.dialog_fragment_yes_no_no_tv);
         noBtn.setOnClickListener(v -> {
-            mCallback.userResponse(false);
+            m_Callback.userResponse(false);
             getDialog().dismiss();
         });
 

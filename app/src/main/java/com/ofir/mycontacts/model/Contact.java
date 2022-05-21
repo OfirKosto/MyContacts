@@ -1,17 +1,21 @@
 package com.ofir.mycontacts.model;
 
+import androidx.annotation.Nullable;
+
 import com.ofir.mycontacts.model.enums.eGenders;
 
 public class Contact {
 
     private String m_FirstName;
     private String m_LastName;
+    private String m_PhoneNumber;
     private String m_Email;
     private eGenders m_Gender;
 
-    public Contact(String i_FirstName, String i_LastName, String i_Email, eGenders i_Gender) {
+    public Contact(String i_FirstName, String i_LastName,String i_PhoneNumber, String i_Email, eGenders i_Gender) {
         m_FirstName = i_FirstName;
         m_LastName = i_LastName;
+        m_PhoneNumber = i_PhoneNumber;
         m_Email = i_Email;
         m_Gender = i_Gender;
     }
@@ -32,6 +36,14 @@ public class Contact {
         m_LastName = i_LastName;
     }
 
+    public String getPhoneNumber() {
+        return m_PhoneNumber;
+    }
+
+    public void setPhoneNumber(String i_PhoneNumber) {
+        m_PhoneNumber = i_PhoneNumber;
+    }
+
     public String getEmail() {
         return m_Email;
     }
@@ -46,5 +58,12 @@ public class Contact {
 
     public void setGender(eGenders i_Gender) {
         m_Gender = i_Gender;
+    }
+
+    public boolean isEqual(Contact i_Contact)
+    {
+        return (i_Contact.getFirstName().equals(m_FirstName) && i_Contact.getLastName().equals(m_LastName) &&
+                i_Contact.getPhoneNumber().equals(m_PhoneNumber) && i_Contact.getEmail().equals(m_Email)
+                && i_Contact.getGender().m_Gender.equals(m_Gender.m_Gender));
     }
 }

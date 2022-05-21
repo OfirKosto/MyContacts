@@ -1,11 +1,10 @@
 package com.ofir.mycontacts.view.viewmodels;
 
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.ofir.mycontacts.model.User;
-import com.ofir.mycontacts.model.interfaces.IUserLoginListener;
+import com.ofir.mycontacts.model.interfaces.IActionListener;
 import com.ofir.mycontacts.model.repositories.UserRepository;
 
 public class LoginViewModel extends ViewModel {
@@ -27,7 +26,7 @@ public class LoginViewModel extends ViewModel {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                UserRepository.getInstance().loginUser(i_Username, i_Password, new IUserLoginListener() {
+                UserRepository.getInstance().loginUser(i_Username, i_Password, new IActionListener<User>() {
                     @Override
                     public void onSuccess(User user) {
                         m_CurrentUser.postValue(user);

@@ -1,18 +1,11 @@
 package com.ofir.mycontacts.model.repositories;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.room.Room;
-
 import com.ofir.mycontacts.ApplicationContext;
 import com.ofir.mycontacts.R;
 import com.ofir.mycontacts.model.Contact;
 import com.ofir.mycontacts.model.User;
 import com.ofir.mycontacts.model.databases.UserDatabase;
-import com.ofir.mycontacts.model.interfaces.IGetUserContactsListener;
-import com.ofir.mycontacts.model.interfaces.IUserCreateListener;
-import com.ofir.mycontacts.model.interfaces.IUserLoginListener;
+import com.ofir.mycontacts.model.interfaces.IActionListener;
 
 import java.util.ArrayList;
 
@@ -41,7 +34,7 @@ public class UserRepository {
         return m_Instance;
     }
 
-    public void signupNewUser(String i_Username, String i_Password, IUserCreateListener i_UserCreateListener)
+    public void signupNewUser(String i_Username, String i_Password, IActionListener<String> i_UserCreateListener)
     {
 
         User user = null;
@@ -71,7 +64,7 @@ public class UserRepository {
         }
     }
 
-    public void loginUser(String i_Username, String i_Password, IUserLoginListener i_UserLoginListener)
+    public void loginUser(String i_Username, String i_Password, IActionListener<User> i_UserLoginListener)
     {
         User user = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
 
@@ -102,7 +95,7 @@ public class UserRepository {
         m_CurrentUser = null;
     }
 
-    public void getUserContacts(IGetUserContactsListener i_GetUserContactsListener)
+    public void getUserContacts(IActionListener<ArrayList<Contact>> i_GetUserContactsListener)
     {
         if(m_CurrentUser == null)
         {
@@ -116,18 +109,43 @@ public class UserRepository {
         }
     }
 
+    public void deleteContactFromCurrentUser(
+            Contact i_Contact, int i_ContactIndex, IActionListener<ArrayList<Contact>> i_DeleteContactListener) {
+
+        if(m_CurrentUser.getContact(i_ContactIndex).isEqual(i_Contact))
+        {
+            m_CurrentUser.deleteContact(i_ContactIndex);
+            UserDatabase.getInstance().userDao().insertUser(m_CurrentUser);
+
+            User user = UserDatabase.getInstance().userDao().getUserByUsername(m_CurrentUser.getM_Username());
+            if(user.getNumberOfContacts() == m_CurrentUser.getNumberOfContacts())
+            {
+                m_CurrentUser = user;
+                i_DeleteContactListener.onSuccess(m_CurrentUser.getM_Contacts());
+            }
+            else
+            {
+                i_DeleteContactListener.onFailure(ApplicationContext.getContext()
+                        .getResources().getString(R.string.failed_to_delete_contact));
+            }
+        }
+        else
+        {
+            i_DeleteContactListener.onFailure(ApplicationContext.getContext()
+                    .getResources().getString(R.string.somting_wrong_happend));
+        }
+
+    }
+
     private void refreshCurrentUser() {
         m_CurrentUser = UserDatabase.getInstance().userDao().getUserByUsername(m_CurrentUser.getM_Username());
     }
 
+
+
     public void addContactToCurrentUser(Contact i_Contact)
     {
 //        m_CurrentUser.addContact(i_Contact);
-//        UserDatabase.getInstance().userDao().insertUser(m_CurrentUser);
-    }
-
-    public void deleteContactFromCurrentUser(int i_ContactIndex) {
-//        m_CurrentUser.deleteContact(i_ContactIndex);
 //        UserDatabase.getInstance().userDao().insertUser(m_CurrentUser);
     }
 

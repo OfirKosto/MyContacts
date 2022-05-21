@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.ofir.mycontacts.ApplicationContext;
 import com.ofir.mycontacts.R;
-import com.ofir.mycontacts.model.interfaces.IUserCreateListener;
+import com.ofir.mycontacts.model.interfaces.IActionListener;
 import com.ofir.mycontacts.model.repositories.UserRepository;
 
 public class SignupViewModel extends ViewModel {
@@ -39,7 +39,7 @@ public class SignupViewModel extends ViewModel {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                UserRepository.getInstance().signupNewUser(i_Username, i_Password, new IUserCreateListener() {
+                                UserRepository.getInstance().signupNewUser(i_Username, i_Password, new IActionListener<String>() {
                                     @Override
                                     public void onSuccess(String s) {
                                         m_MessageToUser.postValue(s);

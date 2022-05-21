@@ -22,11 +22,42 @@
     <fragment
         android:id="@+id/contactInfoFragment"
         android:name="com.ofir.mycontacts.view.fragments.ContactInfoFragment"
-        android:label="ContactInfoFragment" />
+        android:label="ContactInfoFragment" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
+        <argument
+            android:name="phone_number"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/saveContactFragment"
         android:name="com.ofir.mycontacts.view.fragments.SaveContactFragment"
-        android:label="SaveContactFragment" />
+        android:label="SaveContactFragment" >
+        <argument
+            android:name="first_name"
+            app:argType="string" />
+        <argument
+            android:name="last_name"
+            app:argType="string" />
+        <argument
+            android:name="phone_number"
+            app:argType="string" />
+        <argument android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.ofir.mycontacts.view.fragments.ContactsFragment"

@@ -18,8 +18,6 @@ import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.ofir.mycontacts.R;
-import com.ofir.mycontacts.model.interfaces.IUserCreateListener;
-import com.ofir.mycontacts.view.viewmodels.LoginViewModel;
 import com.ofir.mycontacts.view.viewmodels.SignupViewModel;
 
 public class SignupFragment extends Fragment {
