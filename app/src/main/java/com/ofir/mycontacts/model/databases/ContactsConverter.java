@@ -23,7 +23,7 @@ public class ContactsConverter {
     @TypeConverter
     public ArrayList<Contact> stringToContactsList(String value)
     {
-        Type listType = new TypeToken<ArrayList<String>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<Contact>>() {}.getType();
         return new Gson().fromJson(value, listType);
     }
 

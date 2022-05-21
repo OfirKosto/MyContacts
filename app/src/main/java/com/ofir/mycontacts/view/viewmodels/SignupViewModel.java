@@ -26,7 +26,12 @@ public class SignupViewModel extends ViewModel {
                 {
                     if(i_Password.equals(i_ConfirmPassword))
                     {
-                        UserRepository.getInstance().signupNewUser(i_Username, i_Password, i_UserCreateListener);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                UserRepository.getInstance().signupNewUser(i_Username, i_Password, i_UserCreateListener);
+                            }
+                        }).start();
                     }
                     else
                     {
