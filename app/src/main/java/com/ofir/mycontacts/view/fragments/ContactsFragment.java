@@ -175,7 +175,8 @@ public class ContactsFragment extends Fragment {
     private void logOut()
     {
         m_ViewModel.logOut();
-        NavHostFragment.findNavController(ContactsFragment.this).popBackStack();
+//        NavHostFragment.findNavController(this).popBackStack();
+        NavHostFragment.findNavController(this).navigate(R.id.action_contactsFragment_to_loginFragment);
     }
 
     @Override
