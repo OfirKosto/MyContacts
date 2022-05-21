@@ -70,7 +70,6 @@ public class LoginFragment extends Fragment {
         m_ViewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                //TODO bundle user and navigate to contacts fragment with the bundle(action, bundle)
                 NavHostFragment.findNavController(LoginFragment.this)
                         .navigate(R.id.action_loginFragment_to_contactsFragment);
             }

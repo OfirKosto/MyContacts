@@ -11,19 +11,17 @@ import com.ofir.mycontacts.model.Contact;
 import com.ofir.mycontacts.model.User;
 import com.ofir.mycontacts.model.databases.UserDatabase;
 import com.ofir.mycontacts.model.interfaces.IUserCreateListener;
+import com.ofir.mycontacts.model.interfaces.IUserLoginListener;
 
 import java.util.ArrayList;
 
 public class UserRepository {
 
     private static UserRepository m_Instance;
-    private MutableLiveData<User>  m_CurrentUser;
-    private Observer<User> m_CurrentUserObserver;
-    private MutableLiveData<String>  m_MessageToUser;
+    private User m_CurrentUser;
 
     public UserRepository() {
-        m_CurrentUser = new MutableLiveData<>();
-        m_MessageToUser = new MutableLiveData<>();
+        m_CurrentUser = null;
     }
 
     public static UserRepository getInstance()
@@ -42,11 +40,6 @@ public class UserRepository {
         return m_Instance;
     }
 
-    public  MutableLiveData<User> getCurrentUser(){ return  m_CurrentUser;}
-
-    public  MutableLiveData<String> getMessageToUser(){ return  m_MessageToUser;}
-
-    //TODO add listener? post value now
     public void signupNewUser(String i_Username, String i_Password, IUserCreateListener i_UserCreateListener)
     {
 
@@ -63,6 +56,7 @@ public class UserRepository {
             User newUser = new User(i_Username, i_Password);
             UserDatabase.getInstance().userDao().insertUser(newUser);
             user = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
+
             if(user == null)
             {
                 i_UserCreateListener.onFailure(ApplicationContext.getContext()
@@ -76,36 +70,27 @@ public class UserRepository {
         }
     }
 
-    //TODO add listener? post value now
-    public void loginUser(String i_Username, String i_Password)
+    public void loginUser(String i_Username, String i_Password, IUserLoginListener i_UserLoginListener)
     {
-        //TODO check what return if not found
-        User user = null;
-        user = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
+        User user = UserDatabase.getInstance().userDao().getUserByUsername(i_Username);
 
         if(user != null)
         {
             if(i_Password.equals(user.getM_Password()))
             {
-                m_CurrentUserObserver = new Observer<User>() {
-                    @Override
-                    public void onChanged(User user) {
-                        m_CurrentUser.postValue(user);
-                    }
-                };
-//                userLiveData.observeForever(m_CurrentUserObserver);
+                m_CurrentUser = user;
+                i_UserLoginListener.onSuccess(m_CurrentUser);
 
-                m_CurrentUser.postValue(user);
             }
             else
             {
-                m_MessageToUser.postValue(ApplicationContext.getContext()
+                i_UserLoginListener.onFailure(ApplicationContext.getContext()
                         .getResources().getString(R.string.incorrect_username_or_password));
             }
         }
         else
         {
-            m_MessageToUser.postValue(ApplicationContext.getContext()
+            i_UserLoginListener.onFailure(ApplicationContext.getContext()
                     .getResources().getString(R.string.incorrect_username_or_password));
         }
 
@@ -113,15 +98,7 @@ public class UserRepository {
 
     public void logoutUser()
     {
-        if(m_CurrentUser.getValue() != null)
-        {
-            User user = UserDatabase.getInstance().userDao()
-                    .getUserByUsername(m_CurrentUser.getValue().getM_Username());
-
-//            user.removeObserver(m_CurrentUserObserver);
-            m_CurrentUserObserver = null;
-            m_CurrentUser = new MutableLiveData<>();
-        }
+        m_CurrentUser = null;
     }
 
     //TODO GET USER SOMEHOW (Not surly needed)

@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.ofir.mycontacts.model.User;
+import com.ofir.mycontacts.model.interfaces.IUserLoginListener;
 import com.ofir.mycontacts.model.repositories.UserRepository;
 
 public class LoginViewModel extends ViewModel {
@@ -15,7 +16,6 @@ public class LoginViewModel extends ViewModel {
     public LoginViewModel() {
         m_CurrentUser = new MutableLiveData<>();
         m_MessageToUser = new MutableLiveData<>();
-        initObservers();
     }
 
     public  MutableLiveData<User> getCurrentUser(){ return  m_CurrentUser;}
@@ -24,24 +24,22 @@ public class LoginViewModel extends ViewModel {
 
     public void loginUser(String i_Username, String i_Password)
     {
-        UserRepository.getInstance().loginUser(i_Username, i_Password);
-    }
-
-    private void initObservers()
-    {
-        UserRepository.getInstance().getCurrentUser().observeForever(new Observer<User>() {
+        new Thread(new Runnable() {
             @Override
-            public void onChanged(User user) {
-                m_CurrentUser.postValue(user);
-            }
-        });
+            public void run() {
+                UserRepository.getInstance().loginUser(i_Username, i_Password, new IUserLoginListener() {
+                    @Override
+                    public void onSuccess(User user) {
+                        m_CurrentUser.postValue(user);
+                    }
 
-        UserRepository.getInstance().getMessageToUser().observeForever(new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                m_MessageToUser.postValue(s);
+                    @Override
+                    public void onFailure(String s) {
+                        m_MessageToUser.postValue(s);
+                    }
+                });
             }
-        });
+        }).start();
     }
 
 }
