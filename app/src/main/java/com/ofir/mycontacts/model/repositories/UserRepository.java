@@ -168,13 +168,12 @@ public class UserRepository {
 
     public void addNewContact(Contact i_NewContact, IActionListener<Boolean> i_AddContactListener)
     {
-        //TODO CHECK שפות חופפות גבר male in
         getGenderForName(i_NewContact.getFirstName(), new IActionListener<String>() {
             @Override
             public void onSuccess(String data) {
 
                 ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(ApplicationContext.getContext().getResources().getStringArray(R.array.genders_array)));
-                
+
                 if(data == null)
                 {
                     i_NewContact.setGender(arrayList.get(0));

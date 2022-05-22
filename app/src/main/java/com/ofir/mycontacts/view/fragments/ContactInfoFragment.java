@@ -16,8 +16,6 @@ import android.widget.TextView;
 import com.ofir.mycontacts.R;
 
 public class ContactInfoFragment extends Fragment {
-    //TODO CHECK IF VIEWMODEL NEEDED
-//    private ContactInfoViewModel m_ViewModel;
 
     private TextView m_NameTv;
     private TextView m_PhoneTv;

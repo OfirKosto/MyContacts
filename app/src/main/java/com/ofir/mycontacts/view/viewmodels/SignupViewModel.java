@@ -9,7 +9,6 @@ import com.ofir.mycontacts.model.interfaces.IActionListener;
 import com.ofir.mycontacts.model.repositories.UserRepository;
 
 public class SignupViewModel extends ViewModel {
-        //TODO check flip phone details deleted
 
     private final int SIGNUP_FIELDS_MIN_LENGTH = 6;
     private MutableLiveData<String> m_MessageToUser;

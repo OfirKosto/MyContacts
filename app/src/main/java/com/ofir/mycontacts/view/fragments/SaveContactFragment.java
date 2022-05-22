@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.ofir.mycontacts.R;
 import com.ofir.mycontacts.model.Contact;
 import com.ofir.mycontacts.view.viewmodels.SaveContactViewModel;
@@ -37,6 +38,7 @@ public class SaveContactFragment extends Fragment {
     private EditText m_GenderEd;
     private Button m_CancelBtn;
     private Button m_SaveBtn;
+    private TextInputLayout m_GenderInputLayout;
 
 
 
@@ -60,9 +62,10 @@ public class SaveContactFragment extends Fragment {
         m_GenderEd = rootView.findViewById(R.id.fragment_save_contact_gender_ed);
         m_CancelBtn = rootView.findViewById(R.id.fragment_save_contact_cancel_btn);
         m_SaveBtn = rootView.findViewById(R.id.fragment_save_contact_save_btn);
+        m_GenderInputLayout = rootView.findViewById(R.id.fragment_save_contact_gender_input_layout);
 
         Bundle bundle = getArguments();
-        //TODO CHECK IS EMPTY GOOD FROM EDIT
+
         if(!bundle.isEmpty())
         {
             m_isEditMode = true;
@@ -78,7 +81,7 @@ public class SaveContactFragment extends Fragment {
         else
         {
             m_isEditMode = false;
-            m_GenderEd.setVisibility(View.GONE);
+            m_GenderInputLayout.setVisibility(View.GONE);
         }
 
         m_CancelBtn.setOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
