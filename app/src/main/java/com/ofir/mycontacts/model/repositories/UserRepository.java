@@ -252,7 +252,7 @@ public class UserRepository {
 
             @Override
             public void onFailure(Call<JsonGetGenderResponse> call, Throwable t) {
-                i_GetGenderForNameListener.onFailure("none");
+                i_GetGenderForNameListener.onFailure(" ");
             }
         });
     }

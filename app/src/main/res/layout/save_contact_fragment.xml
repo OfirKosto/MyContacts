@@ -17,7 +17,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/fragment_save_contact_name_tv"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:textSize="40sp"
             android:textColor="?attr/colorSecondaryVariant"
             android:layout_margin="40dp"
