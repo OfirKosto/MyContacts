@@ -7,7 +7,6 @@ import com.ofir.mycontacts.model.JsonGetGenderResponse;
 import com.ofir.mycontacts.model.User;
 import com.ofir.mycontacts.model.databases.UserDatabase;
 import com.ofir.mycontacts.model.interfaces.IActionListener;
-import com.ofir.mycontacts.model.util.*;
 import com.ofir.mycontacts.model.util.GenderApiUtil;
 
 import java.util.ArrayList;
@@ -175,8 +174,12 @@ public class UserRepository {
             public void onSuccess(String data) {
 
                 ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(ApplicationContext.getContext().getResources().getStringArray(R.array.genders_array)));
-
-                if(data.equals("male"))
+                
+                if(data == null)
+                {
+                    i_NewContact.setGender(arrayList.get(0));
+                }
+                else if(data.equals("male"))
                 {
                     i_NewContact.setGender(arrayList.get(1));
                 }
@@ -194,7 +197,7 @@ public class UserRepository {
 
             @Override
             public void onFailure(String s) {
-                i_NewContact.setGender(" ");
+                i_NewContact.setGender(s);
                 addContact(i_NewContact, i_AddContactListener);
             }
         });
@@ -234,14 +237,17 @@ public class UserRepository {
                     {
                         if(response.body().getGender() != null)
                         {
-                            String s = response.body().getGender();
                             i_GetGenderForNameListener.onSuccess(response.body().getGender());
+                        }
+                        else
+                        {
+                            i_GetGenderForNameListener.onSuccess(null);
                         }
                     }
                 }
                 else
                 {
-                    i_GetGenderForNameListener.onFailure("none");
+                    i_GetGenderForNameListener.onFailure(" ");
                 }
             }
 

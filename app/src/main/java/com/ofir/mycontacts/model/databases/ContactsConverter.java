@@ -9,6 +9,7 @@ import com.ofir.mycontacts.model.Contact;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
 @ProvidedTypeConverter
 public class ContactsConverter {
 

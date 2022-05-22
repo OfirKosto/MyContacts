@@ -1,7 +1,5 @@
 package com.ofir.mycontacts.view.fragments;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.ofir.mycontacts.R;
-import com.ofir.mycontacts.view.viewmodels.ContactInfoViewModel;
 
 public class ContactInfoFragment extends Fragment {
     //TODO CHECK IF VIEWMODEL NEEDED

@@ -9,8 +9,6 @@ import com.ofir.mycontacts.model.Contact;
 import com.ofir.mycontacts.model.interfaces.IActionListener;
 import com.ofir.mycontacts.model.repositories.UserRepository;
 
-import java.util.ArrayList;
-
 public class SaveContactViewModel extends ViewModel {
 
     private MutableLiveData<String> m_MessageToUser;
