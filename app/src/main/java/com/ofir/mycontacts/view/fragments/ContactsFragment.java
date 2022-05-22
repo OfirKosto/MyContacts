@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.ofir.mycontacts.R;
 import com.ofir.mycontacts.model.Contact;
@@ -31,7 +30,7 @@ public class ContactsFragment extends Fragment {
     private ContactsViewModel m_ViewModel;
 
     private ImageButton m_LogoutBtn;
-    private FloatingActionButton m_AddContactBtn;
+    private ImageButton m_AddContactBtn;
     private RecyclerView m_ContactsRecyclerView;
 
     private ArrayList<Contact> m_ContactsArrayList;
@@ -69,7 +68,7 @@ public class ContactsFragment extends Fragment {
             }
         });
 
-        m_AddContactBtn = rootView.findViewById(R.id.fragment_contacts_add_contact_fab);
+        m_AddContactBtn = rootView.findViewById(R.id.fragment_contacts_add_contact_btn);
         m_AddContactBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -13,7 +13,7 @@
         android:id="@+id/fragment_contact_info_contact_name_tv"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:textSize="40sp"
+        android:textSize="25sp"
         android:textColor="?attr/colorSecondaryVariant"
         android:layout_margin="40dp"
         android:text="@string/contact_name"
